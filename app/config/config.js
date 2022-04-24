@@ -82,7 +82,7 @@ var config = convict({
 });
 
 // Load environment dependent configuration
-var env = config.get('env');
+var env = 'assignment1';//config.get('env');
 config.loadFile('./config/' + env + '.json');
 
 // Perform validation

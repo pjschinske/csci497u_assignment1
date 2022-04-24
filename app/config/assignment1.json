@@ -1,0 +1,10 @@
+{
+    "port": 8080,
+    "db": {
+        "name": "schinske_roundy_DB",
+        "db_url": "assigment1-db.c1ajbx5t9ub9.us-west-2.rds.amazonaws.com",
+        "password": "CSCI497U"
+    },
+    "redis_host": "redisblogcache.vajsmm.0001.usw2.cache.amazonaws.com",
+    "redis_port": 6379
+}
