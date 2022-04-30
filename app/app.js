@@ -66,7 +66,13 @@ client.connect((err) => {
 
 app.use(
 	session({
-		secret: config.get('secret'),
+		secret: {
+			doc: 'Secret used for session cookies and CSRF tokens',
+			format: '*',
+			default: '',
+			sensitive: true,
+			env: 'SESSION_SECRET'
+		},
 		resave: false,
 		// store: MongoStore.create({
 		// 	mongoUrl: blog_db_url,
@@ -74,7 +80,7 @@ app.use(
 		// }),
 		store: new Redis({
 			port: 6379,
-			host: 'schinske-roundy-elasticache.yiseuo.0001.usw2.cache.amazonaws.com'
+			host: 'assignment1-cluster.s0uqnp.ng.0001.usw2.cache.amazonaws.com'
 			// username ,
 			// password 
 		}),
@@ -83,7 +89,8 @@ app.use(
 	})
 );
 
-
+const userInfo = client.query("CREATE TABLE user (username VARCHAR(50) UNIQUE NOT NULL PRIMARY KEY, email VARCHAR(50) UNIQUE NOT NULL, password VARCHAR(20) NOT NULL);");
+const postInfo = client.query("CREATE TABLE post (username VARCHAR(50) NOT NULL, title VARCHAR(50) NOT NULL, content VARCHAR(1000) NOT NULL, PRIMARY KEY(username, title, content), FOREIGN KEY(username) REFERENCES user(username));");
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -113,10 +120,10 @@ app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
 
-const server = https.createServer(/*{
-	key: fs.readFileSync('server.key'),		//SSL certificate stuff would go here
-	cert: fs.readFileSync('server.cert')
-}, */app).listen(port,() => {
+const server = https.createServer({
+	key: fs.readFileSync('example.key'),		//SSL certificate stuff would go here
+	cert: fs.readFileSync('example.crt')
+}, app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 });
 

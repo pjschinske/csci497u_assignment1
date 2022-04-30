@@ -1,0 +1,12 @@
+{
+    "env":"dev",
+    "port":443,
+    "db": {
+        "name": "userBlogs",
+        "db_url": "localhost",
+        "password": "",
+        "host": ""
+    },
+    "redis_host": "assignment1-cluster.s0uqnp.ng.0001.usw2.cache.amazonaws.com",
+    "redis_port": 6379
+}

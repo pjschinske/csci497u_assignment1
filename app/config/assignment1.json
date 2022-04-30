@@ -1,5 +1,5 @@
 {
-    "port": 8080,
+    "port": 443,
     "db": {
         "name": "schinske_roundy_DB",
         "db_url": "assigment1-db.c1ajbx5t9ub9.us-west-2.rds.amazonaws.com",
